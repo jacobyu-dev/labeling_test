@@ -5,6 +5,7 @@ setup(
     version='0.0.1',
     description='ypolaris image labeling tool',
     url='https://github.com/jacobyu-dev/labeling_test.git',
+    py_modules=['labeling_lib'],
     packages=['labeling_lib'],
     install_requires=[
         'opencv-python>=4.5.1.48'
