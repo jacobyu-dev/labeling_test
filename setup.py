@@ -9,6 +9,6 @@ setup(
     url='https://github.com/jacobyu-dev/labeling_test.git',
     packages=['labeling_lib'],
     install_require=[
-        'opencv-python>=4.5.1.48'
+        'opencv-python==4.5.1.48'
     ]
 )
