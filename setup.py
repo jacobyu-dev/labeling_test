@@ -1,7 +1,5 @@
 from setuptools import setup
 
-import labeling_lib
-
 setup(
     name='ypolaris_ai_labeling_tool',
     version='0.0.1',
