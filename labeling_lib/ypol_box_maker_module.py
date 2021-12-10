@@ -1,18 +1,19 @@
-import cv2
 import os
-from File_reader import File_reader
-from Box_maker import Box_maker
-from Config_reader import Confing_reader
 
+import cv2
+from .File_reader import File_reader
+from .Box_maker import Box_maker
+from .Config_reader import Confing_reader
 
 def run_box_maker():
+
 
     param = Confing_reader()
     ret = param.load_cfg()
 
-    image_dir = param.input_image_dir
-    annotation_dir = param.annotation_dir
-    label_dir = param.label_dir
+    image_dir = os.path.expanduser(param.input_image_dir)
+    annotation_dir = os.path.expanduser(param.annotation_dir)
+    label_dir = os.path.expanduser(param.label_dir)
     product_key = param.product_key
 
     reader = File_reader(image_dir, annotation_dir, label_dir ,sort_by_number_str=False)
@@ -86,21 +87,26 @@ def run_box_maker():
             
 def generate_setup_file():
 
-    if os.path.isdir('img') == False:
-        os.mkdir('img')
+    if os.path.isdir(os.path.expanduser('~/labeling_data/')) == False:
+        os.mkdir(os.path.expanduser('~/labeling_data/'))
 
-    if os.path.isdir('annotation') == False:
-        os.mkdir('annotation')
+    if os.path.isdir(os.path.expanduser('~/labeling_data/img/')) == False:
+        os.mkdir(os.path.expanduser('~/labeling_data/img/'))
 
-    f = open('config.ini', 'w')
+    if os.path.isdir(os.path.expanduser('~/labeling_data/annotation/')) == False:
+        os.mkdir(os.path.expanduser('~/labeling_data/annotation/'))
 
+    f = open(os.path.expanduser('~/labeling_data/config.ini'), 'w')
     config_contents = ""
     config_contents += "[dir_config]\n"
     config_contents += "input_image_dir = ~/labeling_data/img\n"
     config_contents += "annotation_dir = ~/labeling_data/annotation\n"
     config_contents += "label_dir = ~/labeling_data/ypol.names\n"
     config_contents += "product_label_key = 3\n"
-
     f.write(config_contents)
+    f.close()
 
+    f = open(os.path.expanduser('~/labeling_data/ypol.names'), 'w')
+    ypol_names = ""
+    f.write(config_contents)
     f.close()

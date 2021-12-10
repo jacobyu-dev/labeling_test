@@ -1,10 +1,11 @@
 from configparser import ConfigParser
+import os
 
 class Confing_reader:
     def __init__(self):
         self.parser = ConfigParser()
 
-    def load_cfg(self,file_name='~/labeling_data/config.ini'):
+    def load_cfg(self,file_name=os.path.expanduser('~/labeling_data/config.ini')):
         try:
             self.parser.read(file_name)
             if (self.parser.sections()[0] == 'dir_config') :
